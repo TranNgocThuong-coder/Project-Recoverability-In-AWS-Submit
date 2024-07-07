@@ -1,0 +1,214 @@
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-10-2-10-204 ~]$ mysql -h readreplicaudacity1.cd54wxz7dmje.us-east-2.rds.amazonaws.com -P 3306 -u admin -p
+-bash: mysql: command not found
+[ec2-user@ip-10-2-10-204 ~]$ sudo wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+--2024-07-07 15:54:20--  https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+Resolving dev.mysql.com (dev.mysql.com)... 23.61.106.232, 2600:141f:4000:48a::2e31, 2600:141f:4000:494::2e31
+Connecting to dev.mysql.com (dev.mysql.com)|23.61.106.232|:443... connected.
+HTTP request sent, awaiting response... 302 Moved Temporarily
+Location: https://repo.mysql.com//mysql80-community-release-el9-1.noarch.rpm [following]
+--2024-07-07 15:54:20--  https://repo.mysql.com//mysql80-community-release-el9-1.noarch.rpm
+Resolving repo.mysql.com (repo.mysql.com)... 23.43.218.19, 2600:1407:7400:118e::1d68, 2600:1407:7400:1183::1d68
+Connecting to repo.mysql.com (repo.mysql.com)|23.43.218.19|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 10534 (10K) [application/x-redhat-package-manager]
+Saving to: ‘mysql80-community-release-el9-1.noarch.rpm’
+
+mysql80-community-release-el9-1.noarch.rpm          100%[================================================================================================================>]  10.29K  --.-KB/s    in 0s      
+
+2024-07-07 15:54:20 (188 MB/s) - ‘mysql80-community-release-el9-1.noarch.rpm’ saved [10534/10534]
+
+[ec2-user@ip-10-2-10-204 ~]$ sudo wget https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+--2024-07-07 15:54:20--  https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+Resolving dev.mysql.com (dev.mysql.com)... 23.61.106.232, 2600:141f:4000:48a::2e31, 2600:141f:4000:494::2e31
+Connecting to dev.mysql.com (dev.mysql.com)|23.61.106.232|:443... connected.
+HTTP request sent, awaiting response... 302 Moved Temporarily
+Location: https://repo.mysql.com//mysql80-community-release-el9-1.noarch.rpm [following]
+--2024-07-07 15:54:20--  https://repo.mysql.com//mysql80-community-release-el9-1.noarch.rpm
+Resolving repo.mysql.com (repo.mysql.com)... 23.43.218.19, 2600:1407:7400:118e::1d68, 2600:1407:7400:1183::1d68
+Connecting to repo.mysql.com (repo.mysql.com)|23.43.218.19|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 10534 (10K) [application/x-redhat-package-manager]
+Saving to: ‘mysql80-community-release-el9-1.noarch.rpm’
+
+mysql80-community-release-el9-1.noarch.rpm          100%[================================================================================================================>]  10.29K  --.-KB/s    in 0s      
+
+2024-07-07 15:54:20 (188 MB/s) - ‘mysql80-community-release-el9-1.noarch.rpm’ saved [10534/10534]
+
+[ec2-user@ip-10-2-10-204 ~]$ sudo dnf install mysql80-community-release-el9-1.noarch.rpm -y
+Last metadata expiration check: 0:02:34 ago on Sun Jul  7 15:52:42 2024.
+Dependencies resolved.
+=============================================================================================================================================================================================================
+ Package                                                       Architecture                               Version                                     Repository                                        Size
+=============================================================================================================================================================================================================
+Installing:
+ mysql80-community-release                                     noarch                                     el9-1                                       @commandline                                      10 k
+
+Transaction Summary
+=============================================================================================================================================================================================================
+Install  1 Package
+
+Total size: 10 k
+Installed size: 5.7 k
+Downloading Packages:
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                                                     1/1 
+  Installing       : mysql80-community-release-el9-1.noarch                                                                                                                                              1/1 
+  Verifying        : mysql80-community-release-el9-1.noarch                                                                                                                                              1/1 
+
+Installed:
+  mysql80-community-release-el9-1.noarch                                                                                                                                                                     
+
+Complete!
+[ec2-user@ip-10-2-10-204 ~]$ sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2023
+[ec2-user@ip-10-2-10-204 ~]$ sudo dnf install mysql-community-server -y
+MySQL 8.0 Community Server                                                                                                                                                    13 MB/s | 1.9 MB     00:00    
+MySQL Connectors Community                                                                                                                                                   972 kB/s |  61 kB     00:00    
+MySQL Tools Community                                                                                                                                                        5.4 MB/s | 721 kB     00:00    
+Dependencies resolved.
+=============================================================================================================================================================================================================
+ Package                                                        Architecture                           Version                                       Repository                                         Size
+=============================================================================================================================================================================================================
+Installing:
+ mysql-community-server                                         x86_64                                 8.0.38-1.el9                                  mysql80-community                                  49 M
+Installing dependencies:
+ mysql-community-client                                         x86_64                                 8.0.38-1.el9                                  mysql80-community                                 3.4 M
+ mysql-community-client-plugins                                 x86_64                                 8.0.38-1.el9                                  mysql80-community                                 1.4 M
+ mysql-community-common                                         x86_64                                 8.0.38-1.el9                                  mysql80-community                                 555 k
+ mysql-community-icu-data-files                                 x86_64                                 8.0.38-1.el9                                  mysql80-community                                 2.3 M
+ mysql-community-libs                                           x86_64                                 8.0.38-1.el9                                  mysql80-community                                 1.5 M
+
+Transaction Summary
+=============================================================================================================================================================================================================
+Install  6 Packages
+
+Total download size: 59 M
+Installed size: 335 M
+Downloading Packages:
+(1/6): mysql-community-common-8.0.38-1.el9.x86_64.rpm                                                                                                                        6.0 MB/s | 555 kB     00:00    
+(2/6): mysql-community-client-plugins-8.0.38-1.el9.x86_64.rpm                                                                                                                 13 MB/s | 1.4 MB     00:00    
+(3/6): mysql-community-icu-data-files-8.0.38-1.el9.x86_64.rpm                                                                                                                 29 MB/s | 2.3 MB     00:00    
+(4/6): mysql-community-client-8.0.38-1.el9.x86_64.rpm                                                                                                                         18 MB/s | 3.4 MB     00:00    
+(5/6): mysql-community-libs-8.0.38-1.el9.x86_64.rpm                                                                                                                           15 MB/s | 1.5 MB     00:00    
+(6/6): mysql-community-server-8.0.38-1.el9.x86_64.rpm                                                                                                                         75 MB/s |  49 MB     00:00    
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                         70 MB/s |  59 MB     00:00     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                                                     1/1 
+  Installing       : mysql-community-common-8.0.38-1.el9.x86_64                                                                                                                                          1/6 
+  Installing       : mysql-community-client-plugins-8.0.38-1.el9.x86_64                                                                                                                                  2/6 
+  Installing       : mysql-community-libs-8.0.38-1.el9.x86_64                                                                                                                                            3/6 
+  Running scriptlet: mysql-community-libs-8.0.38-1.el9.x86_64                                                                                                                                            3/6 
+  Installing       : mysql-community-client-8.0.38-1.el9.x86_64                                                                                                                                          4/6 
+  Installing       : mysql-community-icu-data-files-8.0.38-1.el9.x86_64                                                                                                                                  5/6 
+  Running scriptlet: mysql-community-server-8.0.38-1.el9.x86_64                                                                                                                                          6/6 
+  Installing       : mysql-community-server-8.0.38-1.el9.x86_64                                                                                                                                          6/6 
+  Running scriptlet: mysql-community-server-8.0.38-1.el9.x86_64                                                                                                                                          6/6 
+  Verifying        : mysql-community-client-8.0.38-1.el9.x86_64                                                                                                                                          1/6 
+  Verifying        : mysql-community-client-plugins-8.0.38-1.el9.x86_64                                                                                                                                  2/6 
+  Verifying        : mysql-community-common-8.0.38-1.el9.x86_64                                                                                                                                          3/6 
+  Verifying        : mysql-community-icu-data-files-8.0.38-1.el9.x86_64                                                                                                                                  4/6 
+  Verifying        : mysql-community-libs-8.0.38-1.el9.x86_64                                                                                                                                            5/6 
+  Verifying        : mysql-community-server-8.0.38-1.el9.x86_64                                                                                                                                          6/6 
+
+Installed:
+  mysql-community-client-8.0.38-1.el9.x86_64     mysql-community-client-plugins-8.0.38-1.el9.x86_64     mysql-community-common-8.0.38-1.el9.x86_64     mysql-community-icu-data-files-8.0.38-1.el9.x86_64    
+  mysql-community-libs-8.0.38-1.el9.x86_64       mysql-community-server-8.0.38-1.el9.x86_64            
+
+Complete!
+[ec2-user@ip-10-2-10-204 ~]$ mysql -h readreplicaudacity1.cd54wxz7dmje.us-east-2.rds.amazonaws.com -P 3306 -u admin -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 27
+Server version: 8.0.35 Source distribution
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use udacity
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| employees         |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from udacity;
+ERROR 1146 (42S02): Table 'udacity.udacity' doesn't exist
+mysql> select * from employees;
++----+------------------+-----------+--------+
+| id | name             | position  | salary |
++----+------------------+-----------+--------+
+|  1 | Tran Ngoc Thuong | Manager   |  80000 |
+|  2 | Nguyen Minh Ngoc | Developer |  78555 |
+|  3 | Andrew Tran      | Manager   |  80000 |
+|  4 | Andrew Nguyen    | Developer |  70000 |
++----+------------------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employees;
++----+------------------+-----------+--------+
+| id | name             | position  | salary |
++----+------------------+-----------+--------+
+|  1 | Tran Ngoc Thuong | Manager   |  80000 |
+|  2 | Nguyen Minh Ngoc | Developer |  78555 |
+|  3 | Andrew Tran      | Manager   |  80000 |
+|  4 | Andrew Nguyen    | Developer |  70000 |
++----+------------------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employees;
++----+------------------+-----------+--------+
+| id | name             | position  | salary |
++----+------------------+-----------+--------+
+|  1 | Tran Ngoc Thuong | Manager   |  80000 |
+|  2 | Nguyen Minh Ngoc | Developer |  78555 |
+|  3 | Andrew Tran      | Manager   |  80000 |
+|  4 | Andrew Nguyen    | Developer |  70000 |
++----+------------------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> UPDATE employees SET salary = 78999 WHERE name = 'Nguyen Minh Ngoc';
+ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+mysql> 

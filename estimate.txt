@@ -1,0 +1,15 @@
+1. Minimum RTO for a Single AZ Outage:
+    The minimum RTO for a single AZ outage in a Multi-AZ setup is typically less than 5 minutes, 
+    as failover to another AZ happens automatically and quickly.
+
+2. Minimum RTO for a Single Region Outage:
+    For a single region outage, the minimum RTO can range from 10 to 30 minutes or more, 
+    as it involves promoting a read replica in another region and updating DNS settings.
+
+3. Minimum RPO for a Single AZ Outage
+    The minimum RPO for a single AZ outage is zero seconds due to synchronous replication, 
+    ensuring no data loss during failover.
+
+4. Minimum RPO for a Single Region Outage
+    For a single region outage, the minimum RPO can be less than 5 minutes, depending on the replication lag, 
+    with asynchronous cross-region replication potentially leading to minimal data loss.
